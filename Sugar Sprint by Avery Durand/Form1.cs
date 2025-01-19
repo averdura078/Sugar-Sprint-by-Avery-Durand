@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 //Sugar Sprint game by Avery Durand
 //FINAL PROJECT ICS3U
@@ -18,24 +19,44 @@ namespace Sugar_Sprint_by_Avery_Durand
     {
         //ground
         Rectangle ground = new Rectangle(0, 350, 550, 100);
-        SolidBrush greenBrush = new SolidBrush(Color.SpringGreen);
+        SolidBrush groundBrush = new SolidBrush(Color.SpringGreen);
 
         //player
-        Rectangle chef = new Rectangle(10, 335, 20, 20);
+        Rectangle chef = new Rectangle(10, 320, 30, 30);
         SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
-        int chefSpeed = 10;
-        int jumpUpOrDown= 0;
+        int chefSpeed = 12;
+        int chefScore = 0;
+        int highScore = 0;
+        int jumpUpOrDown = 0;
 
-        //obstacles
+        //blades
+        List<Rectangle> blades = new List<Rectangle>();
+        SolidBrush grayBrush = new SolidBrush(Color.Gray);
 
         //falling obstacles
+        List<Rectangle> broccolis = new List<Rectangle>();
+        SolidBrush lightGreenBrush = new SolidBrush(Color.LightGreen);
+        SolidBrush greenBrush = new SolidBrush(Color.Green);
 
         //candies
+        List<Rectangle> candies = new List<Rectangle>();
+        SolidBrush redBrush = new SolidBrush(Color.Red);
+        SolidBrush orangeBrush = new SolidBrush(Color.Orange);
+        SolidBrush lightYellowBrush = new SolidBrush(Color.LightYellow);
+        SolidBrush blueBrush = new SolidBrush(Color.Blue);
+        SolidBrush purpleBrush = new SolidBrush(Color.Purple);
+
+        //grass
+        List<Rectangle> grass = new List<Rectangle>();
+        SolidBrush grassBrush = new SolidBrush(Color.MediumSeaGreen);
 
         //keys
         bool leftPressed = false;
         bool rightPressed = false;
         bool jumpPressed = false;
+
+        //random generator
+        Random randGen = new Random();
 
         public Form1()
         {
@@ -52,7 +73,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 case Keys.Right:
                     rightPressed = false;
                     break;
-                case Keys.Up:
+                case Keys.Space:
                     jumpPressed = false;
                     break;
             }
@@ -79,8 +100,16 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(greenBrush, ground);
             e.Graphics.FillRectangle(yellowBrush, chef);
+
+            e.Graphics.FillRectangle(groundBrush, ground);
+            //draw grass
+
+            //draw blades
+
+            //draw candies
+
+            //draw broccoli
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -97,19 +126,46 @@ namespace Sugar_Sprint_by_Avery_Durand
             if (jumpPressed == true)
             {
                 jumpUpOrDown++;
-                if (jumpUpOrDown < 5)
+                if (jumpUpOrDown <= 20)
                 {
                     //up
-                    chef.Y -= chefSpeed;
+                    chef.Y -= chefSpeed / 2;
                 }
-                if (jumpUpOrDown > 5)
+                if (jumpUpOrDown > 20)
                 {
                     //down
-                    chef.Y += chefSpeed;
+                    chef.Y += chefSpeed / 2;
                 }
-                
+                if (jumpUpOrDown == 40)
+                {
+                    jumpUpOrDown = 0;
+                    jumpPressed = false;
+                }
+
             }
 
+            //create blades
+
+            //move blades
+
+            //create broccolis
+
+            //move broccolis
+
+            //check for collision with blades
+
+            //check for collision with broccolis
+
+            //
+
+            //refresh score
+            scoreLabel.Text = $"Score: {chefScore}  High Score: {highScore}";
+            if (chefScore > highScore)
+            {
+                highScore = chefScore;
+
+                //show new high score message
+            }
             Refresh();
         }
 
@@ -125,17 +181,62 @@ namespace Sugar_Sprint_by_Avery_Durand
             startButton.Visible = false;
             instructionsButton.Visible = false;
 
-            //show name
+            //show name, score, and menu button
             chefNameLabel.Text += " " + Convert.ToString(nameInput.Text);
             chefNameLabel.Visible = true;
+            scoreLabel.Visible = true;
+            menuButton.Visible = true;
 
             this.Focus();
         }
 
         private void instructionsButton_Click(object sender, EventArgs e)
         {
+            //hide menu
+            enterNameLabel.Visible = false;
+            nameInput.Visible = false;
+            startButton.Visible = false;
+            instructionsButton.Visible = false;
 
+            //show instructions and back button
+            instructionsLabel.Text = "Welcome to Sugar Sprint, chef!\n\nCollect the rainbow candies to earn points.\nAvoid the blades or you will die.\nBeware of falling broccoli sprouts...\nthey will cause you to lose points!\n\nUse the arrow keys and the space bar to control your chef.";
+            instructionsLabel.Visible = true;
+            backButton.Visible = true;
         }
 
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            //show menu
+            titleLabel.Visible = true;
+            enterNameLabel.Visible = true;
+            nameInput.Visible = true;
+            startButton.Visible = true;
+            instructionsButton.Visible = true;
+            instructionsLabel.Visible = false;
+            backButton.Visible = false;
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            gameTimer.Stop();
+
+            //hide game
+            chefNameLabel.Visible = false;
+            scoreLabel.Visible = false;
+            menuButton.Visible = false;
+
+            //show menu
+            titleLabel.Visible = true;
+            enterNameLabel.Visible = true;
+            nameInput.Visible = true;
+            startButton.Visible = true;
+            instructionsButton.Visible = true;
+            instructionsLabel.Visible = false;
+
+            //reset
+            chefScore = 0;
+            chef.X = 10;
+            chef.Y = 320;
+        }
     }
 }
