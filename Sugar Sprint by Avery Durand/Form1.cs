@@ -40,11 +40,12 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         //candies
         List<Rectangle> candies = new List<Rectangle>();
+        List<string> candyColours = new List<string>();
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush orangeBrush = new SolidBrush(Color.Orange);
-        SolidBrush lightYellowBrush = new SolidBrush(Color.LightYellow);
-        SolidBrush blueBrush = new SolidBrush(Color.Blue);
-        SolidBrush purpleBrush = new SolidBrush(Color.Purple);
+        SolidBrush goldYellowBrush = new SolidBrush(Color.Gold);
+        SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
+        SolidBrush purpleBrush = new SolidBrush(Color.DarkViolet);
 
         //grass
         List<Rectangle> grass = new List<Rectangle>();
@@ -54,6 +55,7 @@ namespace Sugar_Sprint_by_Avery_Durand
         bool leftPressed = false;
         bool rightPressed = false;
         bool jumpPressed = false;
+        bool escPressed = false;
 
         //random generator
         Random randGen = new Random();
@@ -73,8 +75,8 @@ namespace Sugar_Sprint_by_Avery_Durand
                 case Keys.Right:
                     rightPressed = false;
                     break;
-                case Keys.Space:
-                    jumpPressed = false;
+                case Keys.Escape:
+                    escPressed = false;
                     break;
             }
         }
@@ -95,6 +97,9 @@ namespace Sugar_Sprint_by_Avery_Durand
                         jumpPressed = true;
                     }
                     break;
+                case Keys.Escape:
+                    escPressed = true;
+                    break;
             }
         }
 
@@ -103,17 +108,51 @@ namespace Sugar_Sprint_by_Avery_Durand
             e.Graphics.FillRectangle(yellowBrush, chef);
 
             e.Graphics.FillRectangle(groundBrush, ground);
-            //draw grass
 
             //draw blades
+            for (int i = 0; i < blades.Count; i++)
+            {
+                e.Graphics.FillRectangle(grayBrush, blades[i]);
+            }
 
             //draw candies
+            for (int i = 0; i < candies.Count; i++)
+            {
+                if (candyColours[i] == "red")
+                {
+                    e.Graphics.FillEllipse(redBrush, candies[i]);
+                }
+                else if (candyColours[i] == "orange")
+                {
+                    e.Graphics.FillEllipse(orangeBrush, candies[i]);
+                }
+                else if (candyColours[i] == "light yellow")
+                {
+                    e.Graphics.FillEllipse(goldYellowBrush, candies[i]);
+                }
+                else if (candyColours[i] == "blue")
+                {
+                    e.Graphics.FillEllipse(blueBrush, candies[i]);
+                }
+                else if (candyColours[i] == "purple")
+                {
+                    e.Graphics.FillEllipse(purpleBrush, candies[i]);
+                }
+            }
 
             //draw broccoli
+
+            //draw grass
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            if (escPressed == true)
+            {
+                //show menu
+                ShowMenu();
+            }
+
             //move player
             if (rightPressed == true && chef.X < this.Width - chef.Width)
             {
@@ -126,17 +165,17 @@ namespace Sugar_Sprint_by_Avery_Durand
             if (jumpPressed == true)
             {
                 jumpUpOrDown++;
-                if (jumpUpOrDown <= 20)
+                if (jumpUpOrDown <= 14)
                 {
                     //up
-                    chef.Y -= chefSpeed / 2;
+                    chef.Y -= chefSpeed;
                 }
-                if (jumpUpOrDown > 20)
+                if (jumpUpOrDown > 14)
                 {
                     //down
-                    chef.Y += chefSpeed / 2;
+                    chef.Y += chefSpeed;
                 }
-                if (jumpUpOrDown == 40)
+                if (jumpUpOrDown == 28)
                 {
                     jumpUpOrDown = 0;
                     jumpPressed = false;
@@ -145,18 +184,87 @@ namespace Sugar_Sprint_by_Avery_Durand
             }
 
             //create blades
+            //random percent occurrance
+            int randBladeOccurance = randGen.Next(1, 101);
+            //random height
+            if (randBladeOccurance < 2)
+            {
+                //random height
+                int sizeY = randGen.Next(50, 100);
+
+                Rectangle newBlade = new Rectangle(this.Width, 350 - sizeY, 50, sizeY);
+
+                blades.Add(newBlade);
+            }
 
             //move blades
+            for (int i = 0; i < blades.Count; i++)
+            {
+                int x = blades[i].X - 6;
+                blades[i] = new Rectangle(x, blades[i].Y, blades[i].Width, blades[i].Height);
+            }
+
+            //create candies
+            //random percent occurrance
+            int randCandyOccurance = randGen.Next(1, 101);
+            int randColour = randGen.Next(1, 101);
+            if (randCandyOccurance < 3)
+                if (randColour < 20)
+                {
+                    Rectangle newCandy = new Rectangle(this.Width, 350 - 40, 40, 40);
+
+                    candies.Add(newCandy);
+                    candyColours.Add("red");
+                }
+                else if (randColour < 40)
+                {
+                    Rectangle newCandy = new Rectangle(this.Width, 350 - 40, 40, 40);
+
+                    candies.Add(newCandy);
+                    candyColours.Add("orange");
+                }
+                else if (randColour < 60)
+                {
+                    Rectangle newCandy = new Rectangle(this.Width, 350 - 40, 40, 40);
+
+                    candies.Add(newCandy);
+                    candyColours.Add("light yellow");
+                }
+                else if (randColour < 80)
+                {
+                    Rectangle newCandy = new Rectangle(this.Width, 350 - 40, 40, 40);
+
+                    candies.Add(newCandy);
+                    candyColours.Add("blue");
+                }
+                else if (randColour < 100)
+                {
+                    Rectangle newCandy = new Rectangle(this.Width, 350 - 40, 40, 40);
+
+                    candies.Add(newCandy);
+                    candyColours.Add("purple");
+                }
+
+            //move candies
+            for (int i = 0; i < candies.Count; i++)
+            {
+                int x = candies[i].X - 6;
+                candies[i] = new Rectangle(x, candies[i].Y, candies[i].Width, candies[i].Height);
+            }
 
             //create broccolis
 
             //move broccolis
 
+            //create grass
+
+            //move grass
+
             //check for collision with blades
 
             //check for collision with broccolis
 
-            //
+            //check for collision with candies
 
             //refresh score
             scoreLabel.Text = $"Score: {chefScore}  High Score: {highScore}";
@@ -185,7 +293,6 @@ namespace Sugar_Sprint_by_Avery_Durand
             chefNameLabel.Text += " " + Convert.ToString(nameInput.Text);
             chefNameLabel.Visible = true;
             scoreLabel.Visible = true;
-            menuButton.Visible = true;
 
             this.Focus();
         }
@@ -199,9 +306,10 @@ namespace Sugar_Sprint_by_Avery_Durand
             instructionsButton.Visible = false;
 
             //show instructions and back button
-            instructionsLabel.Text = "Welcome to Sugar Sprint, chef!\n\nCollect the rainbow candies to earn points.\nAvoid the blades or you will die.\nBeware of falling broccoli sprouts...\nthey will cause you to lose points!\n\nUse the arrow keys and the space bar to control your chef.";
+            instructionsLabel.Text = "Welcome to Sugar Sprint, chef!\n\nCollect the rainbow candies to earn points.\nAvoid the blades or you will die.\nBeware of falling broccoli sprouts...\nthey will cause you to lose points!\n\nUse the arrow keys to move and space to jump.\nClick Esc to end game.";
             instructionsLabel.Visible = true;
             backButton.Visible = true;
+            backButton.Enabled = true;
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -216,14 +324,13 @@ namespace Sugar_Sprint_by_Avery_Durand
             backButton.Visible = false;
         }
 
-        private void menuButton_Click(object sender, EventArgs e)
+        private void ShowMenu()
         {
             gameTimer.Stop();
 
             //hide game
             chefNameLabel.Visible = false;
             scoreLabel.Visible = false;
-            menuButton.Visible = false;
 
             //show menu
             titleLabel.Visible = true;

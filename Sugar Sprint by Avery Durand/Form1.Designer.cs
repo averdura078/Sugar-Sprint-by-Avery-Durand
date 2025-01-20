@@ -38,7 +38,6 @@
             this.chefNameLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.instructionsLabel = new System.Windows.Forms.Label();
-            this.menuButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -50,12 +49,11 @@
             // titleLabel
             // 
             this.titleLabel.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titleLabel.Font = new System.Drawing.Font("Jokerman", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.Black;
-            this.titleLabel.Location = new System.Drawing.Point(-1, 33);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleLabel.Location = new System.Drawing.Point(-1, 41);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(525, 376);
+            this.titleLabel.Size = new System.Drawing.Size(700, 463);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Sugar Sprint";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -68,11 +66,11 @@
             this.startButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.startButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.startButton.Location = new System.Drawing.Point(200, 219);
-            this.startButton.Margin = new System.Windows.Forms.Padding(2);
+            this.startButton.Font = new System.Drawing.Font("Jokerman", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.startButton.Location = new System.Drawing.Point(267, 270);
+            this.startButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(133, 58);
+            this.startButton.Size = new System.Drawing.Size(177, 71);
             this.startButton.TabIndex = 1;
             this.startButton.Text = "Start";
             this.startButton.UseVisualStyleBackColor = false;
@@ -80,22 +78,21 @@
             // 
             // nameInput
             // 
-            this.nameInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameInput.Location = new System.Drawing.Point(200, 154);
-            this.nameInput.Margin = new System.Windows.Forms.Padding(2);
+            this.nameInput.Font = new System.Drawing.Font("Jokerman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameInput.Location = new System.Drawing.Point(267, 190);
+            this.nameInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(134, 28);
+            this.nameInput.Size = new System.Drawing.Size(177, 42);
             this.nameInput.TabIndex = 2;
             this.nameInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // enterNameLabel
             // 
             this.enterNameLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.enterNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.enterNameLabel.Location = new System.Drawing.Point(178, 110);
-            this.enterNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.enterNameLabel.Font = new System.Drawing.Font("Jokerman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.enterNameLabel.Location = new System.Drawing.Point(237, 135);
             this.enterNameLabel.Name = "enterNameLabel";
-            this.enterNameLabel.Size = new System.Drawing.Size(174, 32);
+            this.enterNameLabel.Size = new System.Drawing.Size(232, 39);
             this.enterNameLabel.TabIndex = 3;
             this.enterNameLabel.Text = "Enter your name:";
             this.enterNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -108,11 +105,11 @@
             this.instructionsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.instructionsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.instructionsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.instructionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructionsButton.Location = new System.Drawing.Point(162, 301);
-            this.instructionsButton.Margin = new System.Windows.Forms.Padding(2);
+            this.instructionsButton.Font = new System.Drawing.Font("Jokerman", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instructionsButton.Location = new System.Drawing.Point(216, 370);
+            this.instructionsButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.instructionsButton.Name = "instructionsButton";
-            this.instructionsButton.Size = new System.Drawing.Size(201, 58);
+            this.instructionsButton.Size = new System.Drawing.Size(268, 71);
             this.instructionsButton.TabIndex = 6;
             this.instructionsButton.Text = "Instructions";
             this.instructionsButton.UseVisualStyleBackColor = false;
@@ -121,11 +118,10 @@
             // chefNameLabel
             // 
             this.chefNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.chefNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chefNameLabel.Location = new System.Drawing.Point(178, -1);
-            this.chefNameLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.chefNameLabel.Font = new System.Drawing.Font("Jokerman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chefNameLabel.Location = new System.Drawing.Point(237, -1);
             this.chefNameLabel.Name = "chefNameLabel";
-            this.chefNameLabel.Size = new System.Drawing.Size(174, 32);
+            this.chefNameLabel.Size = new System.Drawing.Size(232, 39);
             this.chefNameLabel.TabIndex = 7;
             this.chefNameLabel.Text = "Chef";
             this.chefNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -134,11 +130,10 @@
             // scoreLabel
             // 
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.Font = new System.Drawing.Font("Jokerman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.Location = new System.Drawing.Point(0, -1);
-            this.scoreLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(183, 32);
+            this.scoreLabel.Size = new System.Drawing.Size(274, 39);
             this.scoreLabel.TabIndex = 8;
             this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.scoreLabel.Visible = false;
@@ -146,34 +141,14 @@
             // instructionsLabel
             // 
             this.instructionsLabel.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.instructionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instructionsLabel.Font = new System.Drawing.Font("Jokerman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.instructionsLabel.ForeColor = System.Drawing.Color.Black;
-            this.instructionsLabel.Location = new System.Drawing.Point(-5, 110);
-            this.instructionsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.instructionsLabel.Location = new System.Drawing.Point(-7, 119);
             this.instructionsLabel.Name = "instructionsLabel";
-            this.instructionsLabel.Size = new System.Drawing.Size(530, 234);
+            this.instructionsLabel.Size = new System.Drawing.Size(707, 304);
             this.instructionsLabel.TabIndex = 10;
             this.instructionsLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.instructionsLabel.Visible = false;
-            // 
-            // menuButton
-            // 
-            this.menuButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.menuButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.menuButton.FlatAppearance.BorderSize = 2;
-            this.menuButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.menuButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.menuButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuButton.Location = new System.Drawing.Point(456, -1);
-            this.menuButton.Margin = new System.Windows.Forms.Padding(2);
-            this.menuButton.Name = "menuButton";
-            this.menuButton.Size = new System.Drawing.Size(69, 32);
-            this.menuButton.TabIndex = 11;
-            this.menuButton.Text = "Menu";
-            this.menuButton.UseVisualStyleBackColor = false;
-            this.menuButton.Visible = false;
-            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
             // 
             // backButton
             // 
@@ -183,26 +158,26 @@
             this.backButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.backButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.backButton.Location = new System.Drawing.Point(11, 346);
-            this.backButton.Margin = new System.Windows.Forms.Padding(2);
+            this.backButton.Font = new System.Drawing.Font("Jokerman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(15, 426);
+            this.backButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(105, 49);
+            this.backButton.Size = new System.Drawing.Size(140, 60);
             this.backButton.TabIndex = 12;
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Visible = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(525, 406);
+            this.ClientSize = new System.Drawing.Size(700, 500);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.instructionsLabel);
             this.Controls.Add(this.scoreLabel);
-            this.Controls.Add(this.menuButton);
             this.Controls.Add(this.instructionsButton);
             this.Controls.Add(this.enterNameLabel);
             this.Controls.Add(this.nameInput);
@@ -211,7 +186,7 @@
             this.Controls.Add(this.chefNameLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Sugar Sprint";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
@@ -233,7 +208,6 @@
         private System.Windows.Forms.Label chefNameLabel;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label instructionsLabel;
-        private System.Windows.Forms.Button menuButton;
         private System.Windows.Forms.Button backButton;
     }
 }
