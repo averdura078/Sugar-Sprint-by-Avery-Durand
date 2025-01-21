@@ -24,7 +24,11 @@ namespace Sugar_Sprint_by_Avery_Durand
         //player
         Rectangle chef = new Rectangle(10, 320, 30, 30);
         SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
-        int chefSpeed = 12;
+        SolidBrush whiteBrush = new SolidBrush(Color.White);
+        SolidBrush blackBrush = new SolidBrush(Color.Black);
+        Pen blackPen = new Pen(Color.Black, 3);
+        int chefSpeed = 9;
+        int chefJumpSpeed = 12;
         int chefScore = 0;
         int highScore = 0;
         int jumpUpOrDown = 0;
@@ -105,8 +109,17 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            //draw chef
             e.Graphics.FillRectangle(yellowBrush, chef);
+            e.Graphics.FillRectangle(whiteBrush, chef.X - 5, chef.Y - 5, chef.Width + 10, 15);
+            e.Graphics.FillEllipse(whiteBrush, chef.X - 10, chef.Y - 18, 20, 20);
+            e.Graphics.FillEllipse(whiteBrush, chef.X + chef.Width - 10, chef.Y - 18, 20, 20);
+            e.Graphics.FillEllipse(whiteBrush, chef.X + 5, chef.Y - 26, 20, 25);
+            e.Graphics.FillEllipse(blackBrush, chef.X + 4, chef.Y + 11, 5, 5);
+            e.Graphics.FillEllipse(blackBrush, chef.X + chef.Width - 4, chef.Y + 11, 5, 5);
+            e.Graphics.DrawArc(blackPen, chef.X + 4, chef.Y, 25, 25, 400, 100);
 
+            //draw ground
             e.Graphics.FillRectangle(groundBrush, ground);
 
             //draw blades
@@ -141,8 +154,16 @@ namespace Sugar_Sprint_by_Avery_Durand
             }
 
             //draw broccoli
+            for (int i = 0; i < broccolis.Count; i++)
+            {
+                e.Graphics.FillRectangle(lightGreenBrush, broccolis[i]);
+            }
 
             //draw grass
+            for (int i = 0; i < grass.Count; i++)
+            {
+                e.Graphics.FillRectangle(grassBrush, grass[i]);
+            }
         }
 
         private void gameTimer_Tick(object sender, EventArgs e)
@@ -168,12 +189,12 @@ namespace Sugar_Sprint_by_Avery_Durand
                 if (jumpUpOrDown <= 14)
                 {
                     //up
-                    chef.Y -= chefSpeed;
+                    chef.Y -= chefJumpSpeed;
                 }
                 if (jumpUpOrDown > 14)
                 {
                     //down
-                    chef.Y += chefSpeed;
+                    chef.Y += chefJumpSpeed;
                 }
                 if (jumpUpOrDown == 28)
                 {
@@ -186,7 +207,6 @@ namespace Sugar_Sprint_by_Avery_Durand
             //create blades
             //random percent occurrance
             int randBladeOccurance = randGen.Next(1, 101);
-            //random height
             if (randBladeOccurance < 2)
             {
                 //random height
@@ -253,18 +273,105 @@ namespace Sugar_Sprint_by_Avery_Durand
             }
 
             //create broccolis
+            //random percent occurrance
+            int randBroccoliOccurance = randGen.Next(1, 101);
+            if (randBroccoliOccurance < 80)
+            {
+                //random height
+                int sizeY = randGen.Next(10, 60);
+
+                //random x position
+                int x = randGen.Next(1, this.Width);
+
+                Rectangle newBroccoli = new Rectangle(x, 0, 30, sizeY);
+
+                broccolis.Add(newBroccoli);
+            }
 
             //move broccolis
+            for (int i = 0; i < broccolis.Count; i++)
+            {
+                int y = broccolis[i].Y + 6;
+                broccolis[i] = new Rectangle(broccolis[i].X, y, broccolis[i].Width, broccolis[i].Height);
+            }
 
             //create grass
+            //random percent occurrance
+            int randGrassOccurance = randGen.Next(1, 101);
+            if (randGrassOccurance < 95)
+            {
+                //random height
+                int sizeY = randGen.Next(5, 20);
+
+                //random y position
+                int y = randGen.Next(this.Height - 55, this.Height);
+
+                Rectangle newGrass = new Rectangle(this.Width, y, 3, sizeY);
+
+                grass.Add(newGrass);
+            }
 
             //move grass
+            for (int i = 0; i < grass.Count; i++)
+            {
+                int x = grass[i].X - 6;
+                grass[i] = new Rectangle(x, grass[i].Y, grass[i].Width, grass[i].Height);
+            }
+
+            //remove everything once offscreen
+            for (int i = 0; i < blades.Count; i++)
+            {
+                if (blades[i].X < 0 - blades[i].Width)
+                {
+                    blades.RemoveAt(i);
+                }
+            }
+            for (int i = 0; i < candies.Count; i++)
+            {
+                if (candies[i].X < 0 - candies[i].Width)
+                {
+                    candies.RemoveAt(i);
+                    candyColours.RemoveAt(i);
+                }
+            }
+            for (int i = 0; i < broccolis.Count; i++)
+            {
+                if (broccolis[i].X < this.Height)
+                {
+                    broccolis.RemoveAt(i);
+                }
+            }
 
             //check for collision with blades
+            for (int i = 0; i < blades.Count; i++)
+            {
+                if (chef.IntersectsWith(blades[i]))
+                {
+                    gameTimer.Stop();
+                }
+            }
 
             //check for collision with broccolis
+            for (int i = 0; i < broccolis.Count; i++)
+            {
+                if (chef.IntersectsWith(broccolis[i]))
+                {
+                    chefScore--;
+                    broccolis.RemoveAt(i);
+                }
+            }
 
             //check for collision with candies
+            for (int i = 0; i < candies.Count; i++)
+            {
+                if (chef.IntersectsWith(candies[i]))
+                {
+                    chefScore++;
+                    candies.RemoveAt(i);
+                    candyColours.RemoveAt(i);
+                }
+            }
+
 
             //refresh score
             scoreLabel.Text = $"Score: {chefScore}  High Score: {highScore}";

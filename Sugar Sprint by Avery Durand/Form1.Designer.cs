@@ -51,9 +51,9 @@
             this.titleLabel.BackColor = System.Drawing.Color.PaleTurquoise;
             this.titleLabel.Font = new System.Drawing.Font("Jokerman", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.Black;
-            this.titleLabel.Location = new System.Drawing.Point(-1, 41);
+            this.titleLabel.Location = new System.Drawing.Point(-1, -1);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(700, 463);
+            this.titleLabel.Size = new System.Drawing.Size(711, 505);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Sugar Sprint";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
