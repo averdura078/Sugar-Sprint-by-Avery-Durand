@@ -119,7 +119,7 @@
             // 
             this.chefNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.chefNameLabel.Font = new System.Drawing.Font("Jokerman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chefNameLabel.Location = new System.Drawing.Point(237, -1);
+            this.chefNameLabel.Location = new System.Drawing.Point(468, -1);
             this.chefNameLabel.Name = "chefNameLabel";
             this.chefNameLabel.Size = new System.Drawing.Size(232, 39);
             this.chefNameLabel.TabIndex = 7;
@@ -133,9 +133,8 @@
             this.scoreLabel.Font = new System.Drawing.Font("Jokerman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.Location = new System.Drawing.Point(0, -1);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(274, 39);
+            this.scoreLabel.Size = new System.Drawing.Size(397, 39);
             this.scoreLabel.TabIndex = 8;
-            this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.scoreLabel.Visible = false;
             // 
             // instructionsLabel
@@ -174,6 +173,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BackgroundImage = global::Sugar_Sprint_by_Avery_Durand.Properties.Resources.blueSkyBackground;
             this.ClientSize = new System.Drawing.Size(700, 500);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.instructionsLabel);

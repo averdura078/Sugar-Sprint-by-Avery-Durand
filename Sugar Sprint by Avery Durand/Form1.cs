@@ -19,7 +19,7 @@ namespace Sugar_Sprint_by_Avery_Durand
     {
         //ground
         Rectangle ground = new Rectangle(0, 350, 550, 100);
-        SolidBrush groundBrush = new SolidBrush(Color.SpringGreen);
+        SolidBrush groundBrush = new SolidBrush(Color.SeaGreen);
 
         //player
         Rectangle chef = new Rectangle(10, 320, 30, 30);
@@ -28,7 +28,7 @@ namespace Sugar_Sprint_by_Avery_Durand
         SolidBrush blackBrush = new SolidBrush(Color.Black);
         Pen blackPen = new Pen(Color.Black, 3);
         int chefSpeed = 9;
-        int chefJumpSpeed = 12;
+        int chefJumpSpeed = 16;
         int chefScore = 0;
         int highScore = 0;
         int jumpUpOrDown = 0;
@@ -36,9 +36,11 @@ namespace Sugar_Sprint_by_Avery_Durand
         //blades
         List<Rectangle> blades = new List<Rectangle>();
         SolidBrush grayBrush = new SolidBrush(Color.Gray);
+        int creationCounter = 0;
 
         //falling obstacles
         List<Rectangle> broccolis = new List<Rectangle>();
+        List<int> broccoliSpeeds = new List<int>();
         SolidBrush lightGreenBrush = new SolidBrush(Color.LightGreen);
         SolidBrush greenBrush = new SolidBrush(Color.Green);
 
@@ -48,7 +50,7 @@ namespace Sugar_Sprint_by_Avery_Durand
         SolidBrush redBrush = new SolidBrush(Color.Red);
         SolidBrush orangeBrush = new SolidBrush(Color.Orange);
         SolidBrush goldYellowBrush = new SolidBrush(Color.Gold);
-        SolidBrush blueBrush = new SolidBrush(Color.DodgerBlue);
+        SolidBrush blueBrush = new SolidBrush(Color.Blue);
         SolidBrush purpleBrush = new SolidBrush(Color.DarkViolet);
 
         //grass
@@ -119,6 +121,17 @@ namespace Sugar_Sprint_by_Avery_Durand
             e.Graphics.FillEllipse(blackBrush, chef.X + chef.Width - 4, chef.Y + 11, 5, 5);
             e.Graphics.DrawArc(blackPen, chef.X + 4, chef.Y, 25, 25, 400, 100);
 
+            //draw broccoli
+            for (int i = 0; i < broccolis.Count; i++)
+            {
+                e.Graphics.FillRectangle(lightGreenBrush, broccolis[i]);
+                e.Graphics.FillEllipse(greenBrush, broccolis[i].X - 10, broccolis[i].Y - 14, 20, 20);
+                e.Graphics.FillEllipse(greenBrush, broccolis[i].X + broccolis[i].Width - 10, broccolis[i].Y - 14, 20, 20);
+                e.Graphics.FillEllipse(greenBrush, broccolis[i].X + 5, broccolis[i].Y - 22, 20, 25);
+                e.Graphics.FillEllipse(greenBrush, broccolis[i].X - 3, broccolis[i].Y - 5, 20, 20);
+                e.Graphics.FillEllipse(greenBrush, broccolis[i].X + broccolis[i].Width - 15, broccolis[i].Y - 5, 20, 20);
+            }
+
             //draw ground
             e.Graphics.FillRectangle(groundBrush, ground);
 
@@ -153,16 +166,14 @@ namespace Sugar_Sprint_by_Avery_Durand
                 }
             }
 
-            //draw broccoli
-            for (int i = 0; i < broccolis.Count; i++)
-            {
-                e.Graphics.FillRectangle(lightGreenBrush, broccolis[i]);
-            }
-
             //draw grass
             for (int i = 0; i < grass.Count; i++)
             {
                 e.Graphics.FillRectangle(grassBrush, grass[i]);
+                e.Graphics.FillRectangle(grassBrush, grass[i].X + 5, grass[i].Y + 3, grass[i].Width, grass[i].Height);
+                e.Graphics.FillRectangle(grassBrush, grass[i].X - 5, grass[i].Y + 3, grass[i].Width, grass[i].Height);
+                e.Graphics.FillRectangle(grassBrush, grass[i].X + 10, grass[i].Y - 3, grass[i].Width, grass[i].Height - 3);
+                e.Graphics.FillRectangle(grassBrush, grass[i].X - 10, grass[i].Y - 3, grass[i].Width, grass[i].Height - 3);
             }
         }
 
@@ -186,28 +197,44 @@ namespace Sugar_Sprint_by_Avery_Durand
             if (jumpPressed == true)
             {
                 jumpUpOrDown++;
-                if (jumpUpOrDown <= 14)
+                if (jumpUpOrDown <= 12)
                 {
                     //up
                     chef.Y -= chefJumpSpeed;
+                    chefJumpSpeed--;
                 }
-                if (jumpUpOrDown > 14)
+                if (jumpUpOrDown > 12)
                 {
                     //down
                     chef.Y += chefJumpSpeed;
+                    chefJumpSpeed++;
                 }
-                if (jumpUpOrDown == 28)
+                if (jumpUpOrDown == 25)
                 {
                     jumpUpOrDown = 0;
                     jumpPressed = false;
+                    chefJumpSpeed = 16;
+                    chef.Y = 320;
                 }
 
             }
 
             //create blades
             //random percent occurrance
-            int randBladeOccurance = randGen.Next(1, 101);
-            if (randBladeOccurance < 2)
+            //int randBladeOccurance = randGen.Next(1, 101);
+            //if (randBladeOccurance < 2)
+            //{
+            //    //random height
+            //    int sizeY = randGen.Next(50, 100);
+
+            //    Rectangle newBlade = new Rectangle(this.Width, 350 - sizeY, 50, sizeY);
+
+            //    blades.Add(newBlade);
+            //}
+
+            //random creation interval
+            creationCounter--;
+            if (creationCounter == 0)
             {
                 //random height
                 int sizeY = randGen.Next(50, 100);
@@ -215,6 +242,8 @@ namespace Sugar_Sprint_by_Avery_Durand
                 Rectangle newBlade = new Rectangle(this.Width, 350 - sizeY, 50, sizeY);
 
                 blades.Add(newBlade);
+
+                creationCounter = randGen.Next(50, 100);
             }
 
             //move blades
@@ -275,13 +304,17 @@ namespace Sugar_Sprint_by_Avery_Durand
             //create broccolis
             //random percent occurrance
             int randBroccoliOccurance = randGen.Next(1, 101);
-            if (randBroccoliOccurance < 80)
+            if (randBroccoliOccurance < 3)
             {
                 //random height
-                int sizeY = randGen.Next(10, 60);
+                int sizeY = randGen.Next(30, 60);
 
                 //random x position
-                int x = randGen.Next(1, this.Width);
+                int x = randGen.Next(0, this.Width);
+
+                //random speed
+                int brocSpeed = randGen.Next(3, 11);
+                broccoliSpeeds.Add(brocSpeed);
 
                 Rectangle newBroccoli = new Rectangle(x, 0, 30, sizeY);
 
@@ -291,7 +324,7 @@ namespace Sugar_Sprint_by_Avery_Durand
             //move broccolis
             for (int i = 0; i < broccolis.Count; i++)
             {
-                int y = broccolis[i].Y + 6;
+                int y = broccolis[i].Y + broccoliSpeeds[i];
                 broccolis[i] = new Rectangle(broccolis[i].X, y, broccolis[i].Width, broccolis[i].Height);
             }
 
@@ -336,9 +369,10 @@ namespace Sugar_Sprint_by_Avery_Durand
             }
             for (int i = 0; i < broccolis.Count; i++)
             {
-                if (broccolis[i].X < this.Height)
+                if (broccolis[i].X > this.Height)
                 {
                     broccolis.RemoveAt(i);
+                    broccoliSpeeds.RemoveAt(i);
                 }
             }
 
@@ -378,8 +412,6 @@ namespace Sugar_Sprint_by_Avery_Durand
             if (chefScore > highScore)
             {
                 highScore = chefScore;
-
-                //show new high score message
             }
             Refresh();
         }
