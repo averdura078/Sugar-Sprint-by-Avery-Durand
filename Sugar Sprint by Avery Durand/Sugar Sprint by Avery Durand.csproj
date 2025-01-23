@@ -83,5 +83,8 @@
   <ItemGroup>
     <None Include="Resources\av0tqrnf7.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mouse Double Click-SoundBible.com-1373842393 %281%29.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

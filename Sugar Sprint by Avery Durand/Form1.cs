@@ -26,6 +26,7 @@ namespace Sugar_Sprint_by_Avery_Durand
         SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
+        SolidBrush sugarRushBrush = new SolidBrush(Color.Aquamarine);
         Pen blackPen = new Pen(Color.Black, 3);
         int chefSpeed = 9;
         int chefJumpSpeed = 16;
@@ -52,6 +53,8 @@ namespace Sugar_Sprint_by_Avery_Durand
         SolidBrush goldYellowBrush = new SolidBrush(Color.Gold);
         SolidBrush blueBrush = new SolidBrush(Color.Blue);
         SolidBrush purpleBrush = new SolidBrush(Color.DarkViolet);
+        int sugarRushCount = 0;
+        bool sugarRush = false;
 
         //grass
         List<Rectangle> grass = new List<Rectangle>();
@@ -66,9 +69,17 @@ namespace Sugar_Sprint_by_Avery_Durand
         //random generator
         Random randGen = new Random();
 
+        //sound effects
+        SoundPlayer button = new SoundPlayer(Properties.Resources.click); 
+        //candies
+        //blades
+        //broccolis
+        //sugar rush
+
         public Form1()
         {
             InitializeComponent();
+            creationCounter = randGen.Next(50, 100);
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -112,7 +123,14 @@ namespace Sugar_Sprint_by_Avery_Durand
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             //draw chef
-            e.Graphics.FillRectangle(yellowBrush, chef);
+            if (sugarRush == true)
+            {
+                e.Graphics.FillRectangle(sugarRushBrush, chef);
+            }
+            else if (sugarRush == false)
+            {
+                e.Graphics.FillRectangle(yellowBrush, chef);
+            }
             e.Graphics.FillRectangle(whiteBrush, chef.X - 5, chef.Y - 5, chef.Width + 10, 15);
             e.Graphics.FillEllipse(whiteBrush, chef.X - 10, chef.Y - 18, 20, 20);
             e.Graphics.FillEllipse(whiteBrush, chef.X + chef.Width - 10, chef.Y - 18, 20, 20);
@@ -219,19 +237,6 @@ namespace Sugar_Sprint_by_Avery_Durand
 
             }
 
-            //create blades
-            //random percent occurrance
-            //int randBladeOccurance = randGen.Next(1, 101);
-            //if (randBladeOccurance < 2)
-            //{
-            //    //random height
-            //    int sizeY = randGen.Next(50, 100);
-
-            //    Rectangle newBlade = new Rectangle(this.Width, 350 - sizeY, 50, sizeY);
-
-            //    blades.Add(newBlade);
-            //}
-
             //random creation interval
             creationCounter--;
             if (creationCounter == 0)
@@ -328,29 +333,6 @@ namespace Sugar_Sprint_by_Avery_Durand
                 broccolis[i] = new Rectangle(broccolis[i].X, y, broccolis[i].Width, broccolis[i].Height);
             }
 
-            //create grass
-            //random percent occurrance
-            int randGrassOccurance = randGen.Next(1, 101);
-            if (randGrassOccurance < 95)
-            {
-                //random height
-                int sizeY = randGen.Next(5, 20);
-
-                //random y position
-                int y = randGen.Next(this.Height - 55, this.Height);
-
-                Rectangle newGrass = new Rectangle(this.Width, y, 3, sizeY);
-
-                grass.Add(newGrass);
-            }
-
-            //move grass
-            for (int i = 0; i < grass.Count; i++)
-            {
-                int x = grass[i].X - 6;
-                grass[i] = new Rectangle(x, grass[i].Y, grass[i].Width, grass[i].Height);
-            }
-
             //remove everything once offscreen
             for (int i = 0; i < blades.Count; i++)
             {
@@ -382,6 +364,10 @@ namespace Sugar_Sprint_by_Avery_Durand
                 if (chef.IntersectsWith(blades[i]))
                 {
                     gameTimer.Stop();
+                    winloseLabel.Text = $"YOU LOSE.\n\nYour score was {chefScore}.\nYour highscore is {highScore}.";
+                    winloseLabel.Visible = true;
+                    playAgainButton.Visible = true;
+                    menuButton.Visible = true;
                 }
             }
 
@@ -403,9 +389,17 @@ namespace Sugar_Sprint_by_Avery_Durand
                     chefScore++;
                     candies.RemoveAt(i);
                     candyColours.RemoveAt(i);
+                    sugarRushCount++;
                 }
             }
 
+            //check for sugar rush
+            if (sugarRushCount == 5)
+            {
+                sugarRush = true;
+                sugarRushTimer.Start();
+                chefSpeed = 15;
+            }
 
             //refresh score
             scoreLabel.Text = $"Score: {chefScore}  High Score: {highScore}";
@@ -418,6 +412,8 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            button.Play();
+
             //start game
             gameTimer.Start();
 
@@ -438,6 +434,8 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         private void instructionsButton_Click(object sender, EventArgs e)
         {
+            button.Play();
+
             //hide menu
             enterNameLabel.Visible = false;
             nameInput.Visible = false;
@@ -453,6 +451,8 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         private void backButton_Click(object sender, EventArgs e)
         {
+            button.Play();
+
             //show menu
             titleLabel.Visible = true;
             enterNameLabel.Visible = true;
@@ -465,6 +465,8 @@ namespace Sugar_Sprint_by_Avery_Durand
 
         private void ShowMenu()
         {
+            button.Play();
+
             gameTimer.Stop();
 
             //hide game
@@ -483,6 +485,96 @@ namespace Sugar_Sprint_by_Avery_Durand
             chefScore = 0;
             chef.X = 10;
             chef.Y = 320;
+        }
+
+        private void grassTimer_Tick(object sender, EventArgs e)
+        {
+            //create grass
+            //random percent occurrance
+            int randGrassOccurance = randGen.Next(1, 101);
+            if (randGrassOccurance < 95)
+            {
+                //random height
+                int sizeY = randGen.Next(5, 20);
+
+                //random y position
+                int y = randGen.Next(this.Height - 55, this.Height);
+
+                Rectangle newGrass = new Rectangle(this.Width, y, 3, sizeY);
+
+                grass.Add(newGrass);
+            }
+
+            //move grass
+            for (int i = 0; i < grass.Count; i++)
+            {
+                int x = grass[i].X - 6;
+                grass[i] = new Rectangle(x, grass[i].Y, grass[i].Width, grass[i].Height);
+            }
+
+            //remove grass
+            for (int i = 0; i < grass.Count; i++)
+            {
+                if (grass[i].X < 0)
+                {
+                    grass.RemoveAt(i);
+                }
+            }
+        }
+
+        private void sugarRushTimer_Tick(object sender, EventArgs e)
+        {
+            chefSpeed = 9;
+            sugarRush = false;
+            sugarRushCount = 0;
+            sugarRushTimer.Stop();
+        }
+
+        private void playAgainButton_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
+        {
+            button.Play();
+            Reset();
+            ShowMenu();
+            highScore = 0;
+            nameInput.Text = "";
+        }
+
+        private void Reset()
+        {
+            //clear lists
+            blades.Clear();
+            candies.Clear();
+            candyColours.Clear();
+            broccolis.Clear();
+            broccoliSpeeds.Clear();
+
+            //hide play again
+            winloseLabel.Visible = false;
+            playAgainButton.Visible = false;
+            menuButton.Visible = false;
+
+            //reset chef
+            chef.X = 10;
+            chef.Y = 320;
+            chefScore = 0;
+            chefSpeed = 9;
+
+            //unpress keys
+            jumpPressed = false;
+            leftPressed = false;
+            rightPressed = false;
+
+            //reset sugar rush
+            sugarRushCount = 0;
+            sugarRush = false;
+
+            this.Focus();
+            gameTimer.Start();
         }
     }
 }

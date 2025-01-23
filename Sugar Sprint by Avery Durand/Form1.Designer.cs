@@ -39,6 +39,11 @@
             this.scoreLabel = new System.Windows.Forms.Label();
             this.instructionsLabel = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
+            this.grassTimer = new System.Windows.Forms.Timer(this.components);
+            this.sugarRushTimer = new System.Windows.Forms.Timer(this.components);
+            this.playAgainButton = new System.Windows.Forms.Button();
+            this.winloseLabel = new System.Windows.Forms.Label();
+            this.menuButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gameTimer
@@ -168,6 +173,67 @@
             this.backButton.Visible = false;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // grassTimer
+            // 
+            this.grassTimer.Enabled = true;
+            this.grassTimer.Interval = 20;
+            this.grassTimer.Tick += new System.EventHandler(this.grassTimer_Tick);
+            // 
+            // sugarRushTimer
+            // 
+            this.sugarRushTimer.Interval = 6000;
+            this.sugarRushTimer.Tick += new System.EventHandler(this.sugarRushTimer_Tick);
+            // 
+            // playAgainButton
+            // 
+            this.playAgainButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.playAgainButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.playAgainButton.FlatAppearance.BorderSize = 2;
+            this.playAgainButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.playAgainButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.playAgainButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.playAgainButton.Font = new System.Drawing.Font("Jokerman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playAgainButton.Location = new System.Drawing.Point(216, 281);
+            this.playAgainButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.playAgainButton.Name = "playAgainButton";
+            this.playAgainButton.Size = new System.Drawing.Size(268, 60);
+            this.playAgainButton.TabIndex = 13;
+            this.playAgainButton.Text = "Play Again";
+            this.playAgainButton.UseVisualStyleBackColor = false;
+            this.playAgainButton.Visible = false;
+            this.playAgainButton.Click += new System.EventHandler(this.playAgainButton_Click);
+            // 
+            // winloseLabel
+            // 
+            this.winloseLabel.BackColor = System.Drawing.Color.Transparent;
+            this.winloseLabel.Font = new System.Drawing.Font("Jokerman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.winloseLabel.ForeColor = System.Drawing.Color.Black;
+            this.winloseLabel.Location = new System.Drawing.Point(-1, 119);
+            this.winloseLabel.Name = "winloseLabel";
+            this.winloseLabel.Size = new System.Drawing.Size(701, 149);
+            this.winloseLabel.TabIndex = 14;
+            this.winloseLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.winloseLabel.Visible = false;
+            // 
+            // menuButton
+            // 
+            this.menuButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.menuButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.menuButton.FlatAppearance.BorderSize = 2;
+            this.menuButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.menuButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.menuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.menuButton.Font = new System.Drawing.Font("Jokerman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuButton.Location = new System.Drawing.Point(216, 363);
+            this.menuButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(268, 60);
+            this.menuButton.TabIndex = 15;
+            this.menuButton.Text = "Menu";
+            this.menuButton.UseVisualStyleBackColor = false;
+            this.menuButton.Visible = false;
+            this.menuButton.Click += new System.EventHandler(this.menuButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -175,6 +241,9 @@
             this.BackColor = System.Drawing.Color.PaleTurquoise;
             this.BackgroundImage = global::Sugar_Sprint_by_Avery_Durand.Properties.Resources.blueSkyBackground;
             this.ClientSize = new System.Drawing.Size(700, 500);
+            this.Controls.Add(this.menuButton);
+            this.Controls.Add(this.winloseLabel);
+            this.Controls.Add(this.playAgainButton);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.instructionsLabel);
             this.Controls.Add(this.scoreLabel);
@@ -209,6 +278,11 @@
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label instructionsLabel;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Timer grassTimer;
+        private System.Windows.Forms.Timer sugarRushTimer;
+        private System.Windows.Forms.Button playAgainButton;
+        private System.Windows.Forms.Label winloseLabel;
+        private System.Windows.Forms.Button menuButton;
     }
 }
 
