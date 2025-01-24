@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 
@@ -196,6 +191,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                     break;
             }
         }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -239,6 +235,7 @@ namespace Sugar_Sprint_by_Avery_Durand
             //run paint method
             Refresh();
         }
+
         private void grassTimer_Tick(object sender, EventArgs e)
         {
             //create grass
@@ -273,6 +270,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 }
             }
         }
+
         private void sugarRushTimer_Tick(object sender, EventArgs e)
         {
             chefSpeed = 9;
@@ -281,6 +279,7 @@ namespace Sugar_Sprint_by_Avery_Durand
             sugarrush.Stop();
             sugarRushTimer.Stop();
         }
+
 
         //methods
         private void MovePlayer()
@@ -318,6 +317,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 }
             }
         }
+
         private void CreateAndMoveBlades()
         {
             //create blades
@@ -342,6 +342,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 blades[i] = new Rectangle(x, blades[i].Y, blades[i].Width, blades[i].Height);
             }
         }
+
         private void CreateAndMoveCandies()
         {
             //create candies
@@ -392,6 +393,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 candies[i] = new Rectangle(x, candies[i].Y, candies[i].Width, candies[i].Height);
             }
         }
+
         private void CreateAndMoveBroccolis()
         {
             //create broccolis
@@ -421,6 +423,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 broccolis[i] = new Rectangle(broccolis[i].X, y, broccolis[i].Width, broccolis[i].Height);
             }
         }
+
         private void RemoveObjects()
         {
             //remove everything once offscreen
@@ -448,6 +451,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 }
             }
         }
+
         private void CheckForCollisions()
         {
             //check for collision with blades
@@ -488,6 +492,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 }
             }
         }
+
         private void CheckForSugarRush()
         {
             //check for sugar rush
@@ -501,6 +506,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 sugarRushTimer.Start();
             }
         }
+
         private void RefreshScore()
         {
             //refresh score
@@ -510,6 +516,7 @@ namespace Sugar_Sprint_by_Avery_Durand
                 highScore = chefScore;
             }
         }
+
         private void Reset()
         {
             //clear lists
@@ -542,6 +549,7 @@ namespace Sugar_Sprint_by_Avery_Durand
             this.Focus();
             gameTimer.Start();
         }
+
         private void ShowMenu()
         {
             button.Play();
@@ -566,6 +574,7 @@ namespace Sugar_Sprint_by_Avery_Durand
             chef.Y = 320;
         }
 
+
         //buttons
         private void startButton_Click(object sender, EventArgs e)
         {
@@ -588,6 +597,7 @@ namespace Sugar_Sprint_by_Avery_Durand
 
             this.Focus();
         }
+
         private void instructionsButton_Click(object sender, EventArgs e)
         {
             button.Play();
@@ -604,6 +614,7 @@ namespace Sugar_Sprint_by_Avery_Durand
             backButton.Visible = true;
             backButton.Enabled = true;
         }
+
         private void backButton_Click(object sender, EventArgs e)
         {
             button.Play();
@@ -617,11 +628,13 @@ namespace Sugar_Sprint_by_Avery_Durand
             instructionsLabel.Visible = false;
             backButton.Visible = false;
         }
+
         private void playAgainButton_Click(object sender, EventArgs e)
         {
             lose.Stop();
             Reset();
         }
+
         private void menuButton_Click(object sender, EventArgs e)
         {
             button.Play();
@@ -630,8 +643,6 @@ namespace Sugar_Sprint_by_Avery_Durand
             highScore = 0;
             nameInput.Text = "";
         }
-
-
 
     }
 }
