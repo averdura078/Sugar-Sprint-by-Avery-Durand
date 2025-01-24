@@ -121,7 +121,19 @@
   <data name="blueSkyBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\av0tqrnf7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="chop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Chopping Off Limb-SoundBible.com-884800545.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="click" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Mouse Double Click-SoundBible.com-1373842393 (1).wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ding" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\item-pick-up-38258.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mariostar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\super-mario-bros-nes-music-star-theme-cut-mp3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="sadtrombone" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sad_Trombone-Joe_Lamb-665429450.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

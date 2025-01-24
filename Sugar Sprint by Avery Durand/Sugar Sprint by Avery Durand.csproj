@@ -86,5 +86,17 @@
   <ItemGroup>
     <None Include="Resources\Mouse Double Click-SoundBible.com-1373842393 %281%29.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chopping Off Limb-SoundBible.com-884800545.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\super-mario-bros-nes-music-star-theme-cut-mp3.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sad_Trombone-Joe_Lamb-665429450.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\item-pick-up-38258.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
