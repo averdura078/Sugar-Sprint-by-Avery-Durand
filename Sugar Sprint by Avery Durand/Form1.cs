@@ -21,14 +21,12 @@ namespace Sugar_Sprint_by_Avery_Durand
         SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         SolidBrush blackBrush = new SolidBrush(Color.Black);
-        SolidBrush sugarRushBrush = new SolidBrush(Color.Aquamarine);
         Pen blackPen = new Pen(Color.Black, 3);
         int chefSpeed = 9;
         int chefJumpSpeed = 16;
         int chefScore = 0;
         int highScore = 0;
         int jumpUpOrDown = 0;
-
         int sugarrushColour = 0;
 
         //blades
